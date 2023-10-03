@@ -64,10 +64,8 @@ const getAllProducts = asyncHandler(async (req, res) => {
     if (req.query.sort) {
       const sortBy = req.query.sort.split(",").join(" ");
       query = query.sort(sortBy);
-      console.log("here")
     } else {
       query = query.sort("-createdAt");
-      console.log("ttttthere")
     }
 
     // // limiting the fields
