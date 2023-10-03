@@ -73,11 +73,18 @@ const getAllProducts = asyncHandler(async (req, res) => {
         const fields = req.query.fields.split(",").join(" ");
         query = query.select(fields)
     } else {
-        query = query.select("__v")
+        query = query.select("-__v")
     }
 
-    const products = await query;
-    res.json(products);
+// pagination
+
+const page = req.query.page;
+const limit = req.query.limit;
+const skip = (page - 1 ) * limit
+console.log(page, limit, skip)
+
+    const product = await query;
+    res.json(product);
   } catch (error) {
     throw new Error(error);
   }
