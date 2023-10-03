@@ -68,13 +68,13 @@ const getAllProducts = asyncHandler(async (req, res) => {
       query = query.sort("-createdAt");
     }
 
-    // // limiting the fields
-    // if(req.query.fields){
-    //     const fields = req.query.fields.split(",").join(" ");
-    //     query = query.select(fields)
-    // } else {
-    //     query = query.select("-__v")
-    // }
+    // limiting the fields
+    if(req.query.fields){
+        const fields = req.query.fields.split(",").join(" ");
+        query = query.select(fields)
+    } else {
+        query = query.select("__v")
+    }
 
     const products = await query;
     res.json(products);
