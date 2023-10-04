@@ -14,7 +14,6 @@ const authMiddleware = asyncHandler(async (req, res, next) => {
             const user = await User.findById(decodedToken?.id);
             req.user = user
             next()
-            // console.log(decodedToken, "decodedToken")
         }
     } catch (error) {
       throw new Error("Not Authorised, token expired.");
